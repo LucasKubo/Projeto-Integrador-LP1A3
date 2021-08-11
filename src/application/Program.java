@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -159,6 +160,7 @@ public class Program {
 			case 2:
 				do {
 					// Exibindo menu
+					escolhaDoUsuario = 0;
 					boolean continuaTentando = true;
 					while (continuaTentando) {
 						try {
@@ -172,18 +174,18 @@ public class Program {
 					// -------------------------1 - Fazer Reserva-------------------------
 					switch (escolhaDoUsuario) {
 					case 1:
-						continuaTentando = true;
-						while (continuaTentando) {
-							try {
-								escolhaDoUsuario = Integer.parseInt(JOptionPane.showInputDialog(
-										"1 - Registrar passageiro \n2 - Reservar assento\n3 - Voltar"));
-								continuaTentando = false;
-							} catch (NumberFormatException e) {
-								JOptionPane.showMessageDialog(null, "Só números são aceitos");
-							}
-						}
-
 						do {
+							continuaTentando = true;
+							while (continuaTentando) {
+								try {
+									escolhaDoUsuario = Integer.parseInt(JOptionPane.showInputDialog(
+											"1 - Registrar passageiro \n2 - Reservar assento\n3 - Voltar"));
+									continuaTentando = false;
+								} catch (NumberFormatException e) {
+									JOptionPane.showMessageDialog(null, "Só números são aceitos");
+								}
+							}
+							
 							// ====================== 1- Opção de registrar passageiro======================
 							if (escolhaDoUsuario == 1) {
 								String nome, cpf;
@@ -221,7 +223,7 @@ public class Program {
 								Voo vooSelecionado = null;
 								int nroVoo = -1;
 
-								while (true) {
+								while (vooSelecionado == null) {
 									vooSelecionado = null;
 
 									// Selecionando número do Voo (id)
@@ -240,53 +242,46 @@ public class Program {
 										try {
 											if (arrayVoo[i].getNro() == nroVoo) {
 												vooSelecionado = arrayVoo[i];
+												break;
 											}
 										} catch (NullPointerException e) {
 											JOptionPane.showMessageDialog(null, "Voo não existe ");
 											break;
 										}
 									}
-
-									// Verifica se um voo foi selecionado
-									if (vooSelecionado != null) {
-										JOptionPane.showMessageDialog(null, "Voo existe !");
-										break;
-									}
-								}
-
-								// Selecionando lugar
-								int fileiraSelecionada = -1, assentoSelecionado = -1;
-
-								// Selecionando fileira
-								continuaTentando = true;
-								while (continuaTentando) {
-									try {
-										fileiraSelecionada = Integer.parseInt(JOptionPane.showInputDialog("Fileira"));
-										continuaTentando = false;
-									} catch (NumberFormatException e) {
-										JOptionPane.showMessageDialog(null, "Só números são aceitos");
-									}
-								}
-
-								// Selecionando assento
-								continuaTentando = true;
-								while (continuaTentando) {
-									try {
-										assentoSelecionado = Integer.parseInt(JOptionPane.showInputDialog("Assento"));
-										continuaTentando = false;
-									} catch (NumberFormatException e) {
-										JOptionPane.showMessageDialog(null, "Só números são aceitos");
-									}
 								}
 
 								// Reservando assento
 								boolean assentoReservado = false;
 								while (!assentoReservado) {
-									// Variável que indica se o assento está disponível
-									boolean assentoDisponivel = vooSelecionado.getAviao()
-											.verificaLugarOcupado(fileiraSelecionada, assentoSelecionado);
+									// Selecionando lugar
+									int fileiraSelecionada = -1, assentoSelecionado = -1;
 
-									if (assentoDisponivel) {
+									// Selecionando fileira
+									continuaTentando = true;
+									while (continuaTentando) {
+										try {
+											fileiraSelecionada = Integer.parseInt(JOptionPane.showInputDialog("Fileira"));
+											continuaTentando = false;
+										} catch (NumberFormatException e) {
+											JOptionPane.showMessageDialog(null, "Só números são aceitos");
+										}
+									}
+
+									// Selecionando assento
+									continuaTentando = true;
+									while (continuaTentando) {
+										try {
+											assentoSelecionado = Integer.parseInt(JOptionPane.showInputDialog("Assento"));
+											continuaTentando = false;
+										} catch (NumberFormatException e) {
+											JOptionPane.showMessageDialog(null, "Só números são aceitos");
+										}
+									}
+									// Variável que indica se o assento está disponível
+									boolean assentoOcupado = vooSelecionado.getAviao().verificaLugarOcupado(fileiraSelecionada, assentoSelecionado);
+
+									if (!assentoOcupado) {
 										// Passageiro registrado para o lugar selecionado
 										try {
 											vooSelecionado.getAviao().setPassageiro(fileiraSelecionada,
@@ -358,7 +353,52 @@ public class Program {
 					// ------------2 - Consultar lugares vazios-------------------
 					case 3:
 						// ----------3 - Consultar reservas realizadas---------------
+						// Escolhendo um voo
+						vooSelecionado = null;
 
+						while (vooSelecionado == null) {
+							vooSelecionado = null;
+
+							// Seleciona um número de voo
+							int nroSelecionado = -1;
+							continuaTentando = true;
+							while (continuaTentando) {
+								try {
+									nroSelecionado = Integer.parseInt(JOptionPane.showInputDialog("Número do voo"));
+									continuaTentando = false;
+								} catch (NumberFormatException e) {
+									JOptionPane.showMessageDialog(null, "Só números são aceitos");
+								}
+							}
+
+							// Tentando achar o voo pelo numero passado
+							for (int i = 0; i < arrayVoo.length; i++) {
+								try {
+									if (arrayVoo[i].getNro() == nroSelecionado) {
+										vooSelecionado = arrayVoo[i];
+										break;
+									}
+								} catch (NullPointerException e) {
+									JOptionPane.showMessageDialog(null, "Voo não existe ");
+									break;
+								}
+							}
+						}
+
+						// Mostrando lugares
+						StringBuilder matriz = new StringBuilder("");
+
+						for (int i = 0; i < vooSelecionado.getAviao().getLugares().length; i++) {
+							for (int j = 0; j < vooSelecionado.getAviao().getLugares()[i].length; j++) {
+								if (vooSelecionado.getAviao().getLugares()[i][j] == null) {
+									matriz.append("0 ");
+								}else if (vooSelecionado.getAviao().getLugares()[i][j] != null) {
+									matriz.append("1 ");
+								}
+							}
+							matriz.append("\n");
+						}
+						JOptionPane.showMessageDialog(null,matriz.toString());
 						break;
 					// ---------------3 - Consultar reservas realizadas--------------
 					case 4:
