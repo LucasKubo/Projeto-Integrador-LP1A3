@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edf0ff85-911a-4f31-b467-3294b591210b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/entities/Aeronave.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/entities/Aeronave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/entities/Aviao.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/entities/Aviao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/entities/Passageiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/entities/Passageiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/entities/Voo.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/entities/Voo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/views/PaginaInicial$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/views/PaginaInicial$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/views/PaginaInicial.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/PaginaInicial.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +49,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Program" />
@@ -90,6 +65,7 @@
       <updated>1628549640998</updated>
       <workItem from="1628549642391" duration="30000" />
       <workItem from="1628552173626" duration="9802000" />
+      <workItem from="1629078399181" duration="128000" />
     </task>
     <servers />
   </component>
@@ -106,6 +82,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
